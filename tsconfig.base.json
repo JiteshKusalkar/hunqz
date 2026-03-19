@@ -15,7 +15,9 @@
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
-    "paths": {}
+    "paths": {
+      "@hunqz/shared/api": ["libs/shared/api/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
