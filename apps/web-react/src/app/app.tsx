@@ -15,7 +15,7 @@ export default function App() {
   useEffect(() => {
     let cancelled = false;
 
-    fetchProfile()
+    fetchProfile({ baseUrl: '' })
       .then((data) => {
         if (!cancelled) {
           setProfile(data);
