@@ -17,7 +17,8 @@
     "forceConsistentCasingInFileNames": true,
     "paths": {
       "@hunqz/shared/api": ["libs/shared/api/src/index.ts"],
-      "@hunqz/shared/images": ["libs/shared/images/src/index.ts"]
+      "@hunqz/shared/images": ["libs/shared/images/src/index.ts"],
+      "@hunqz/shared/ui": ["libs/shared/ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
