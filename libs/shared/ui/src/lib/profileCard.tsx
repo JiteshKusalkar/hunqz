@@ -1,6 +1,6 @@
 import type { ImgHTMLAttributes, ReactNode } from 'react';
 
-export interface ProfileImageCardProps {
+export interface ProfileCardProps {
   /** Image URL (CDN or same-origin). */
   imageSrc: string;
   /** Required accessible description; avoid redundant words like "image of". */
@@ -23,7 +23,7 @@ export interface ProfileImageCardProps {
  * Presentational card for a profile photo plus optional text.
  * No data fetching — pass everything via props from the app or domain layer.
  */
-export function ProfileImageCard({
+export function ProfileCard({
   imageSrc,
   imageAlt,
   title,
@@ -32,7 +32,7 @@ export function ProfileImageCard({
   className = '',
   imageProps,
   footer,
-}: ProfileImageCardProps) {
+}: ProfileCardProps) {
   const { className: imgClassName, ...restImageProps } = imageProps ?? {};
   const showCaption = title ?? subtitle ?? meta ?? footer;
 
