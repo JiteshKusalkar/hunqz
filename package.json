@@ -9,7 +9,11 @@
     "lint": "nx lint",
     "format": "nx format:write",
     "format:check": "nx format:check",
-    "prepare": "husky"
+    "prepare": "husky",
+    "dev:next": "nx dev web-next",
+    "dev:react": "nx dev web-react",
+    "test:images": "nx test shared-images",
+    "verify": "nx format:check && nx run-many -t lint --exclude=hunqz && nx run-many -t build --exclude=hunqz"
   },
   "devDependencies": {
     "@commitlint/cli": "^20.5.0",
