@@ -1,0 +1,29 @@
+# Dependencies
+node_modules
+
+# Nx
+.nx/cache
+.nx/workspace-data
+
+# pnpm
+.pnpm-debug.log*
+.pnpm-store/
+
+# Build outputs
+dist
+tmp
+out-tsc
+
+# IDE
+.idea
+.vscode/*.log
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Misc
+*.log

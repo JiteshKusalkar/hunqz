@@ -1,0 +1,20 @@
+{
+  "name": "hunqz",
+  "version": "0.0.0",
+  "private": true,
+  "packageManager": "pnpm@10.29.2",
+  "scripts": {
+    "build": "nx build",
+    "test": "nx test",
+    "lint": "nx lint",
+    "format": "nx format:write",
+    "format:check": "nx format:check"
+  },
+  "devDependencies": {
+    "@nx/js": "22.6.0",
+    "@nx/workspace": "22.6.0",
+    "nx": "22.6.0",
+    "prettier": "^3.5.3",
+    "typescript": "~5.7.0"
+  }
+}
