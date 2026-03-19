@@ -1,10 +1,10 @@
-import Image from 'next/image';
 import type { Metadata } from 'next';
 import { fetchProfile } from '@hunqz/shared/images';
+import { ProfileCard } from '@hunqz/shared/ui';
 
 export const metadata: Metadata = {
   title: 'Hunqz Profile Images',
-  description: 'Server-rendered profile image gallery built from shared Hunqz domain data.',
+  description: 'Server-rendered profile image gallery built from shared Hunqz data.',
 };
 
 export const dynamic = 'force-dynamic';
@@ -32,28 +32,22 @@ export default async function Home() {
         ) : (
           <ul className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {images.map((image, index) => {
-              const altText = `${profile.name} profile image ${index + 1}`;
               const width = image.width ?? 700;
               const height = image.height ?? 700;
 
               return (
-                <li
-                  key={image.id}
-                  className="overflow-hidden rounded-lg border border-slate-200 bg-white"
-                >
-                  <figure>
-                    <Image
-                      src={image.imageUrl}
-                      alt={altText}
-                      width={width}
-                      height={height}
-                      className="h-72 w-full object-cover"
-                      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                    />
-                    <figcaption className="px-3 py-2 text-xs text-slate-600">
-                      {image.rating ? `Rating: ${image.rating}` : 'Rating unavailable'}
-                    </figcaption>
-                  </figure>
+                <li key={image.id}>
+                  <ProfileCard
+                    imageSrc={image.imageUrl}
+                    imageAlt={`${profile.name}, gallery item ${index + 1}`}
+                    meta={image.rating ? `Rating: ${image.rating}` : 'Rating unavailable'}
+                    imageProps={{
+                      width,
+                      height,
+                      loading: index < 3 ? 'eager' : 'lazy',
+                      decoding: 'async',
+                    }}
+                  />
                 </li>
               );
             })}
