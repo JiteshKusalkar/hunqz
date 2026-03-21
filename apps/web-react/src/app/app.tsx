@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
-import { fetchProfile } from '@hunqz/shared/images';
+import { getJson } from '@hunqz/shared/api';
 import type { Profile } from '@hunqz/shared/images';
 
-// Browser cannot read JSON from hunqz.com cross-origin (CORS). Use same-origin `/api/...`;
-// Vite proxies `/api` → hunqz.com (see vite.config.mts). Next.js app fetches from the server instead.
+const API_BASE_URL = import.meta.env['VITE_API_BASE_URL'] ?? 'http://localhost:3333';
 
 type LoadState = 'loading' | 'success' | 'error';
 
@@ -15,7 +14,7 @@ export default function App() {
   useEffect(() => {
     let cancelled = false;
 
-    fetchProfile({ baseUrl: '' })
+    getJson<Profile>('/profiles/msescortplus', { baseUrl: API_BASE_URL })
       .then((data) => {
         if (!cancelled) {
           setProfile(data);

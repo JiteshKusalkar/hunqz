@@ -1,6 +1,9 @@
 import type { Metadata } from 'next';
-import { fetchProfile } from '@hunqz/shared/images';
+import { getJson } from '@hunqz/shared/api';
+import type { Profile } from '@hunqz/shared/images';
 import { ProfileCard } from '@hunqz/shared/ui';
+
+const API_BASE_URL = process.env['NEXT_API_SERVER_URL'] ?? 'http://localhost:3333';
 
 export const metadata: Metadata = {
   title: 'Hunqz Profile Images',
@@ -11,7 +14,9 @@ export const dynamic = 'force-dynamic';
 
 export default async function Home() {
   try {
-    const profile = await fetchProfile();
+    const profile = await getJson<Profile>('/profiles/msescortplus', {
+      baseUrl: API_BASE_URL,
+    });
     const images = profile.images.slice(0, 6);
 
     return (

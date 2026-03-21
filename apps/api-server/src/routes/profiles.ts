@@ -1,9 +1,17 @@
 import { Router } from 'express';
 import { getJson } from '@hunqz/shared/api';
 import { mapRawProfile } from '@hunqz/shared/images';
-import type { RawProfileResponse, Profile, ProfileImage } from '@hunqz/shared/images';
+import type {
+  RawProfileResponse,
+  ProfileBase,
+  ProfileImageBase,
+  Profile,
+  ProfileImage,
+} from '@hunqz/shared/images';
 
 const UPSTREAM_BASE_URL = process.env['HUNQZ_API_BASE_URL'] ?? 'https://www.hunqz.com';
+
+const API_PUBLIC_URL = process.env['API_PUBLIC_URL'] ?? 'http://localhost:3333';
 
 const router = Router();
 
@@ -21,24 +29,24 @@ router.get('/:profileName', async (req, res) => {
     const raw = await getJson<RawProfileResponse>(endpoint, {
       baseUrl: UPSTREAM_BASE_URL,
     });
-    const profile = mapRawProfile(raw);
-    const rewritten = rewriteImageUrls(profile);
-    res.json(rewritten);
+    const base = mapRawProfile(raw);
+    const profile = resolveImageUrls(base);
+    res.json(profile);
   } catch {
     res.status(502).json({ error: 'Failed to load profile' });
   }
 });
 
-function rewriteImageUrls(profile: Profile): Profile {
-  const rewrite = (img: ProfileImage): ProfileImage => ({
+function resolveImageUrls(base: ProfileBase): Profile {
+  const resolve = (img: ProfileImageBase): ProfileImage => ({
     ...img,
-    imageUrl: `/images/256x256/${encodeURIComponent(img.urlToken)}.jpg`,
+    imageUrl: `${API_PUBLIC_URL}/images/256x256/${encodeURIComponent(img.urlToken)}.jpg`,
   });
 
   return {
-    ...profile,
-    previewImage: profile.previewImage ? rewrite(profile.previewImage) : null,
-    images: profile.images.map(rewrite),
+    ...base,
+    previewImage: base.previewImage ? resolve(base.previewImage) : null,
+    images: base.images.map(resolve),
   };
 }
 

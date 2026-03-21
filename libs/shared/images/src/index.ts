@@ -1,3 +1,3 @@
-export * from './lib/types';
-export * from './lib/raw-types';
-export * from './lib/profile-images';
+export type { ProfileImageBase, ProfileImage, ProfileBase, Profile } from './lib/types';
+export type { RawProfilePicture, RawProfileResponse } from './lib/raw-types';
+export { mapRawProfile } from './lib/profile-images';

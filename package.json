@@ -10,6 +10,7 @@
     "format": "nx format:write",
     "format:check": "nx format:check",
     "prepare": "husky",
+    "dev": "nx run-many -t dev -p api-server,web-next,web-react --parallel=3",
     "dev:next": "nx dev web-next",
     "dev:react": "nx dev web-react",
     "dev:api": "nx dev api-server",

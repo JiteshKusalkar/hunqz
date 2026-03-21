@@ -1,26 +1,13 @@
-import { getJson } from '@hunqz/shared/api';
 import type { RawProfilePicture, RawProfileResponse } from './raw-types';
-import type { FetchProfileOptions, Profile, ProfileImage } from './types';
+import type { ProfileBase, ProfileImageBase } from './types';
 
-const DEFAULT_API_BASE_URL = 'https://www.hunqz.com';
-const DEFAULT_PROFILE_NAME = 'msescortplus';
-const IMAGE_BASE_URL = 'https://www.hunqz.com/img/usr/original/0x0';
-
-export function buildProfileImageUrl(urlToken: string): string {
-  const trimmed = urlToken.trim();
-  if (!trimmed) {
-    throw new Error('urlToken is required to build profile image URL');
-  }
-  return `${IMAGE_BASE_URL}/${encodeURIComponent(trimmed)}.jpg`;
-}
-
-export function mapRawProfile(raw: RawProfileResponse): Profile {
+export function mapRawProfile(raw: RawProfileResponse): ProfileBase {
   const id = asNonEmptyString(raw.id, 'profile.id');
   const name = asNonEmptyString(raw.name, 'profile.name');
   const pictures = Array.isArray(raw.pictures) ? raw.pictures : [];
   const images = pictures
     .map((picture) => mapRawPicture(picture))
-    .filter((image): image is ProfileImage => image !== null);
+    .filter((image): image is ProfileImageBase => image !== null);
 
   return {
     id,
@@ -32,17 +19,7 @@ export function mapRawProfile(raw: RawProfileResponse): Profile {
   };
 }
 
-export async function fetchProfile(options: FetchProfileOptions = {}): Promise<Profile> {
-  const profileName = options.profileName?.trim() || DEFAULT_PROFILE_NAME;
-  const endpoint = `/api/opengrid/profiles/${encodeURIComponent(profileName)}`;
-  const raw = await getJson<RawProfileResponse>(endpoint, {
-    baseUrl: options.baseUrl ?? DEFAULT_API_BASE_URL,
-    signal: options.signal,
-  });
-  return mapRawProfile(raw);
-}
-
-function mapRawPicture(raw: unknown): ProfileImage | null {
+function mapRawPicture(raw: unknown): ProfileImageBase | null {
   if (!raw || typeof raw !== 'object') return null;
   const picture = raw as RawProfilePicture;
 
@@ -53,7 +30,6 @@ function mapRawPicture(raw: unknown): ProfileImage | null {
   return {
     id,
     urlToken: token,
-    imageUrl: buildProfileImageUrl(token),
     width: asOptionalNumber(picture.width),
     height: asOptionalNumber(picture.height),
     rating: asOptionalString(picture.rating),
