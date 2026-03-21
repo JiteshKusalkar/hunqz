@@ -28,6 +28,11 @@ Thumbs.db
 # Misc
 *.log
 
+# Environment variables — never commit secrets
+.env
+.env.local
+.env.*.local
+
 # Next.js
 .next
 out

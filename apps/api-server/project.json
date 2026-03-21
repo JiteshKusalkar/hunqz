@@ -1,0 +1,26 @@
+{
+  "name": "api-server",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/api-server/src",
+  "projectType": "application",
+  "tags": ["scope:api", "type:server"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/api-server",
+        "main": "apps/api-server/src/main.ts",
+        "tsConfig": "apps/api-server/tsconfig.json",
+        "assets": []
+      }
+    },
+    "dev": {
+      "executor": "nx:run-commands",
+      "options": {
+        "envFile": ".env",
+        "command": "TS_NODE_PROJECT=apps/api-server/tsconfig.json node -r @swc-node/register -r tsconfig-paths/register apps/api-server/src/main.ts"
+      }
+    }
+  }
+}
