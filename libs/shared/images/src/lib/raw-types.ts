@@ -1,18 +1,18 @@
 export interface RawProfilePicture {
-  id?: unknown;
-  owner_id?: unknown;
-  url_token?: unknown;
-  width?: unknown;
-  height?: unknown;
-  rating?: unknown;
-  is_public?: unknown;
+  id?: string;
+  owner_id?: string;
+  url_token?: string;
+  width?: number;
+  height?: number;
+  rating?: string;
+  is_public?: boolean;
 }
 
 export interface RawProfileResponse {
-  id?: unknown;
-  name?: unknown;
-  online_status?: unknown;
-  headline?: unknown;
+  id?: string;
+  name?: string;
+  online_status?: string;
+  headline?: string;
   preview_pic?: RawProfilePicture | null;
-  pictures?: unknown;
+  pictures?: RawProfilePicture[];
 }

@@ -1,17 +1,15 @@
 import { Router } from 'express';
 import { getJson } from '@hunqz/shared/api';
-import { mapRawProfile } from '@hunqz/shared/images';
+import { mapRawProfile } from '@hunqz/shared/images/server';
 import type {
   RawProfileResponse,
   ProfileBase,
   ProfileImageBase,
-  Profile,
-  ProfileImage,
-} from '@hunqz/shared/images';
+} from '@hunqz/shared/images/server';
+import type { Profile, ProfileImage } from '@hunqz/shared/images';
 
-const UPSTREAM_BASE_URL = process.env['HUNQZ_API_BASE_URL'] ?? 'https://www.hunqz.com';
-
-const API_PUBLIC_URL = process.env['API_PUBLIC_URL'] ?? 'http://localhost:3333';
+const UPSTREAM_BASE_URL = process.env.HUNQZ_API_BASE_URL;
+const API_PUBLIC_URL = process.env.API_PUBLIC_URL;
 
 const router = Router();
 
@@ -39,8 +37,12 @@ router.get('/:profileName', async (req, res) => {
 
 function resolveImageUrls(base: ProfileBase): Profile {
   const resolve = (img: ProfileImageBase): ProfileImage => ({
-    ...img,
-    imageUrl: `${API_PUBLIC_URL}/images/256x256/${encodeURIComponent(img.urlToken)}.jpg`,
+    id: img.id,
+    imageUrl: `${API_PUBLIC_URL}/images/${encodeURIComponent(img.urlToken)}.jpg`,
+    width: img.width,
+    height: img.height,
+    rating: img.rating,
+    isPublic: img.isPublic,
   });
 
   return {

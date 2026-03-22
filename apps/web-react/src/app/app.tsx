@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { getJson } from '@hunqz/shared/api';
 import type { Profile } from '@hunqz/shared/images';
+import { ProfileCard } from '@hunqz/shared/ui';
 
-const API_BASE_URL = import.meta.env['VITE_API_BASE_URL'] ?? 'http://localhost:3333';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 type LoadState = 'loading' | 'success' | 'error';
 
@@ -38,10 +39,12 @@ export default function App() {
   const images = profile?.images.slice(0, 6) ?? [];
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-10">
+    <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
       <header>
-        <h1 className="text-3xl font-semibold tracking-tight">Hunqz profile images</h1>
-        <p className="mt-3 text-sm text-slate-600">Client-rendered SPA using shared domain data.</p>
+        <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">Hunqz profile images</h1>
+        <p className="mt-2 text-sm text-slate-600 sm:mt-3">
+          Client-rendered SPA using shared domain data.
+        </p>
       </header>
 
       {state === 'loading' && (
@@ -71,26 +74,18 @@ export default function App() {
               No public images are available for this profile.
             </p>
           ) : (
-            <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <ul className="grid grid-cols-1 gap-3 xs:grid-cols-2 sm:gap-4 md:grid-cols-2 lg:grid-cols-3">
               {images.map((image, index) => (
-                <li
-                  key={image.id}
-                  className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm"
-                >
-                  <figure>
-                    <img
-                      src={image.imageUrl}
-                      alt={`${profile.name}, gallery item ${index + 1}`}
-                      width={image.width ?? undefined}
-                      height={image.height ?? undefined}
-                      className="h-72 w-full object-cover"
-                      loading={index < 3 ? 'eager' : 'lazy'}
-                      decoding="async"
-                    />
-                    <figcaption className="px-3 py-2 text-xs text-slate-600">
-                      {image.rating ? `Rating: ${image.rating}` : 'Rating unavailable'}
-                    </figcaption>
-                  </figure>
+                <li key={image.id}>
+                  <ProfileCard
+                    imageSrc={image.imageUrl}
+                    imageAlt={`${profile.name}, gallery item ${index + 1}`}
+                    meta={image.rating ? `Rating: ${image.rating}` : 'Rating unavailable'}
+                    imageProps={{
+                      width: image.width ?? 700,
+                      height: image.height ?? 700,
+                    }}
+                  />
                 </li>
               ))}
             </ul>

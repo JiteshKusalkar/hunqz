@@ -18,6 +18,7 @@
     "paths": {
       "@hunqz/shared/api": ["libs/shared/api/src/index.ts"],
       "@hunqz/shared/images": ["libs/shared/images/src/index.ts"],
+      "@hunqz/shared/images/server": ["libs/shared/images/src/server.ts"],
       "@hunqz/shared/ui": ["libs/shared/ui/src/index.ts"]
     }
   },

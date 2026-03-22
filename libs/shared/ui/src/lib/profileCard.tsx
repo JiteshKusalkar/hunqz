@@ -1,28 +1,16 @@
 import type { ImgHTMLAttributes, ReactNode } from 'react';
 
 export interface ProfileCardProps {
-  /** Image URL (CDN or same-origin). */
   imageSrc: string;
-  /** Required accessible description; avoid redundant words like "image of". */
   imageAlt: string;
-  /** Optional primary line (e.g. profile name). */
   title?: string;
-  /** Optional secondary line (e.g. headline). */
   subtitle?: string;
-  /** Optional tertiary line (e.g. rating, status). */
   meta?: string;
-  /** Extra classes on the outer card. */
   className?: string;
-  /** Passed to `<img>` (e.g. width, height, loading, decoding). */
   imageProps?: Omit<ImgHTMLAttributes<HTMLImageElement>, 'src' | 'alt'>;
-  /** Optional footer slot for badges/actions without coupling to app routing. */
   footer?: ReactNode;
 }
 
-/**
- * Presentational card for a profile photo plus optional text.
- * No data fetching — pass everything via props from the app or domain layer.
- */
 export function ProfileCard({
   imageSrc,
   imageAlt,

@@ -3,9 +3,7 @@ import cors from 'cors';
 import { profilesRouter } from './routes/profiles';
 import { imagesRouter } from './routes/images';
 
-const allowedOrigins = (
-  process.env['CORS_ORIGINS'] ?? 'http://localhost:3000,http://localhost:4200'
-)
+const allowedOrigins = (process.env.CORS_ORIGINS ?? 'http://localhost:3000,http://localhost:4200')
   .split(',')
   .map((o) => o.trim())
   .filter(Boolean);

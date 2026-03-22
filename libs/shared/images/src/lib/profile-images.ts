@@ -2,53 +2,30 @@ import type { RawProfilePicture, RawProfileResponse } from './raw-types';
 import type { ProfileBase, ProfileImageBase } from './types';
 
 export function mapRawProfile(raw: RawProfileResponse): ProfileBase {
-  const id = asNonEmptyString(raw.id, 'profile.id');
-  const name = asNonEmptyString(raw.name, 'profile.name');
-  const pictures = Array.isArray(raw.pictures) ? raw.pictures : [];
-  const images = pictures
-    .map((picture) => mapRawPicture(picture))
-    .filter((image): image is ProfileImageBase => image !== null);
+  if (!raw.id) throw new Error('Invalid profile.id');
+  if (!raw.name) throw new Error('Invalid profile.name');
+
+  const pictures = raw.pictures ?? [];
 
   return {
-    id,
-    name,
-    onlineStatus: asOptionalString(raw.online_status),
-    headline: asOptionalString(raw.headline),
-    previewImage: mapRawPicture(raw.preview_pic),
-    images,
+    id: raw.id,
+    name: raw.name,
+    onlineStatus: raw.online_status ?? null,
+    headline: raw.headline ?? null,
+    previewImage: raw.preview_pic ? mapPicture(raw.preview_pic) : null,
+    images: pictures.map(mapPicture).filter((img): img is ProfileImageBase => img !== null),
   };
 }
 
-function mapRawPicture(raw: unknown): ProfileImageBase | null {
-  if (!raw || typeof raw !== 'object') return null;
-  const picture = raw as RawProfilePicture;
-
-  const id = asOptionalString(picture.id);
-  const token = asOptionalString(picture.url_token);
-  if (!id || !token) return null;
+function mapPicture(pic: RawProfilePicture): ProfileImageBase | null {
+  if (!pic.id || !pic.url_token) return null;
 
   return {
-    id,
-    urlToken: token,
-    width: asOptionalNumber(picture.width),
-    height: asOptionalNumber(picture.height),
-    rating: asOptionalString(picture.rating),
-    isPublic: typeof picture.is_public === 'boolean' ? picture.is_public : null,
+    id: pic.id,
+    urlToken: pic.url_token,
+    width: pic.width ?? null,
+    height: pic.height ?? null,
+    rating: pic.rating ?? null,
+    isPublic: pic.is_public ?? null,
   };
-}
-
-function asOptionalString(value: unknown): string | null {
-  return typeof value === 'string' && value.trim() ? value : null;
-}
-
-function asNonEmptyString(value: unknown, fieldName: string): string {
-  const normalized = asOptionalString(value);
-  if (!normalized) {
-    throw new Error(`Invalid ${fieldName}`);
-  }
-  return normalized;
-}
-
-function asOptionalNumber(value: unknown): number | null {
-  return typeof value === 'number' && Number.isFinite(value) ? value : null;
 }

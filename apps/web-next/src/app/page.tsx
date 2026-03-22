@@ -3,7 +3,7 @@ import { getJson } from '@hunqz/shared/api';
 import type { Profile } from '@hunqz/shared/images';
 import { ProfileCard } from '@hunqz/shared/ui';
 
-const API_BASE_URL = process.env['NEXT_API_SERVER_URL'] ?? 'http://localhost:3333';
+const API_BASE_URL = process.env.NEXT_API_SERVER_URL;
 
 export const metadata: Metadata = {
   title: 'Hunqz Profile Images',
@@ -20,12 +20,18 @@ export default async function Home() {
     const images = profile.images.slice(0, 6);
 
     return (
-      <section className="mx-auto max-w-6xl px-4 py-10" aria-labelledby="profile-images-heading">
+      <section
+        className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8"
+        aria-labelledby="profile-images-heading"
+      >
         <header>
-          <h1 id="profile-images-heading" className="text-3xl font-semibold tracking-tight">
+          <h1
+            id="profile-images-heading"
+            className="text-2xl font-semibold tracking-tight sm:text-3xl"
+          >
             {profile.name} profile images
           </h1>
-          <p className="mt-3 text-sm text-slate-600">
+          <p className="mt-2 text-sm text-slate-600 sm:mt-3">
             Server-rendered gallery using shared domain and transport libraries.
           </p>
         </header>
@@ -35,7 +41,7 @@ export default async function Home() {
             No public images are currently available for this profile.
           </p>
         ) : (
-          <ul className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="mt-8 grid grid-cols-1 gap-3 xs:grid-cols-2 sm:gap-4 md:grid-cols-2 lg:grid-cols-3">
             {images.map((image, index) => {
               const width = image.width ?? 700;
               const height = image.height ?? 700;
@@ -46,12 +52,7 @@ export default async function Home() {
                     imageSrc={image.imageUrl}
                     imageAlt={`${profile.name}, gallery item ${index + 1}`}
                     meta={image.rating ? `Rating: ${image.rating}` : 'Rating unavailable'}
-                    imageProps={{
-                      width,
-                      height,
-                      loading: index < 3 ? 'eager' : 'lazy',
-                      decoding: 'async',
-                    }}
+                    imageProps={{ width, height }}
                   />
                 </li>
               );
@@ -62,11 +63,17 @@ export default async function Home() {
     );
   } catch {
     return (
-      <section className="mx-auto max-w-6xl px-4 py-10" aria-labelledby="profile-images-heading">
-        <h1 id="profile-images-heading" className="text-3xl font-semibold tracking-tight">
+      <section
+        className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8"
+        aria-labelledby="profile-images-heading"
+      >
+        <h1
+          id="profile-images-heading"
+          className="text-2xl font-semibold tracking-tight sm:text-3xl"
+        >
           Hunqz profile images
         </h1>
-        <p className="mt-3 text-sm text-slate-600">
+        <p className="mt-2 text-sm text-slate-600 sm:mt-3">
           We could not load profile images right now. Please try again shortly.
         </p>
       </section>
