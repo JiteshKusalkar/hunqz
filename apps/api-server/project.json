@@ -21,6 +21,12 @@
         "envFile": ".env",
         "command": "TS_NODE_PROJECT=apps/api-server/tsconfig.json node -r @swc-node/register -r tsconfig-paths/register apps/api-server/src/main.ts"
       }
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm exec vitest run --config apps/api-server/vitest.config.mts"
+      }
     }
   }
 }
