@@ -56,7 +56,7 @@ The monorepo uses shared libraries to reduce duplication:
 - **Express** for internal API routes
 - **Tailwind CSS** for styling
 - **React Query** in the SPA for data fetching and caching
-- **Vitest + Supertest + MSW** for testing and network mocking
+- **Vitest + MSW** for testing and network mocking
 - **Husky + Commitlint + lint-staged** for repo hygiene
 
 ## Project structure
@@ -90,7 +90,6 @@ libs/
 - Server-rendered page using App Router
 - Fetches the profile from the internal API
 - Shared gallery UI using the shared `ProfileCard`
-- Graceful fallback UI when profile loading fails
 
 ### React app (`apps/web-react`)
 
@@ -163,13 +162,12 @@ pnpm dev:next
 pnpm dev:react
 ```
 
-## Quality commands
+### Build
 
 ```bash
-pnpm lint
-pnpm test
-pnpm build
-pnpm verify
+pnpm exec nx build api-server
+pnpm exec nx build web-next
+pnpm exec nx build web-react
 ```
 
 ## API contract
@@ -182,9 +180,7 @@ Returns:
 { "status": "ok" }
 ```
 
-```
-
-### `GET /images/:token`
+### GET /images/:token`
 
 Proxies the image from the upstream CDN and returns binary image data with cache headers.
 
@@ -207,7 +203,6 @@ Both the API and frontend apps consume the same data contract. Shared types redu
 
 Using a shared `ProfileCard` ensures both apps present the gallery consistently and reduces duplicated markup and styling.
 
-
 ## Future Scope
 
 - **Use of Jotai for State Management**
@@ -229,5 +224,7 @@ Using a shared `ProfileCard` ensures both apps present the gallery consistently 
 - **Improved Routing in `web-react`**
   - Introduce structured routing using libraries like `react-router-dom`
   - Support nested and dynamic routes for better scalability
+
+```
 
 ```
