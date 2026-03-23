@@ -20,7 +20,7 @@ router.get(
 
       const upstreamResponse = await fetch(`${cdnBase}/${upstreamToken}.jpg`);
 
-      if (upstreamResponse.ok) {
+      if (!upstreamResponse.ok) {
         return next(new CustomError(502, 'Failed to load image'));
       }
 

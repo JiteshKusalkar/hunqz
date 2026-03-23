@@ -14,7 +14,6 @@
     "dev:next": "nx dev web-next",
     "dev:react": "nx dev web-react",
     "dev:api": "nx dev api-server",
-    "test:images": "nx test shared-images",
     "test:api": "nx test api-server",
     "verify": "nx format:check && nx run-many -t lint --exclude=hunqz && nx run-many -t build --exclude=hunqz"
   },

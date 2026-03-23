@@ -17,7 +17,7 @@
     "forceConsistentCasingInFileNames": true,
     "paths": {
       "@hunqz/api": ["libs/api/src/index.ts"],
-      "@hunqz/images": ["libs/images/src/index.ts"],
+      "@hunqz/images": ["apps/api-server/src/types/profile.ts"],
       "@hunqz/ui": ["libs/ui/src/index.ts"]
     }
   },
