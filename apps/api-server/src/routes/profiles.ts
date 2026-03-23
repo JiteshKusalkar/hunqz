@@ -3,6 +3,7 @@ import { getJson } from '@hunqz/shared/api';
 import { mapRawProfile } from '@hunqz/shared/images/server';
 import type { RawProfileResponse } from '@hunqz/shared/images/server';
 import { imageUrl } from './images';
+import { sendError } from './routeErrors';
 
 const UPSTREAM_BASE_URL = process.env.HUNQZ_API_BASE_URL;
 
@@ -13,7 +14,7 @@ router.get('/:profileName', async (req, res) => {
   const normalizedName = profileName?.trim();
 
   if (!normalizedName) {
-    res.status(400).json({ error: 'profileName is required' });
+    sendError(res, 400, 'profileName is required');
     return;
   }
 
@@ -31,7 +32,7 @@ router.get('/:profileName', async (req, res) => {
       images: base.images.map(({ id, urlToken }) => ({ id, imageUrl: imageUrl(urlToken) })),
     });
   } catch {
-    res.status(502).json({ error: 'Failed to load profile' });
+    sendError(res, 502, 'Failed to load profile');
   }
 });
 

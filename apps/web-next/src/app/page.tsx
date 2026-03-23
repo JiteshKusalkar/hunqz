@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { getJson } from '@hunqz/shared/api';
 import type { Profile } from '@hunqz/shared/images';
-import { PageLayout } from './components/page-layout';
 import { PageHeader } from './components/page-header';
 import { ProfileGallery } from './components/profile-gallery';
 import { ProfileError } from './components/profile-error';
@@ -15,23 +14,33 @@ export const metadata: Metadata = {
 
 export const dynamic = 'force-dynamic';
 
+async function fetchProfile(): Promise<Profile> {
+  return getJson<Profile>('/profiles/msescortplus', {
+    baseUrl: API_BASE_URL,
+  });
+}
+
 export default async function Home() {
   try {
-    const profile = await getJson<Profile>('/profiles/msescortplus', {
-      baseUrl: API_BASE_URL,
-    });
+    const profile = await fetchProfile();
 
     return (
-      <PageLayout>
+      <section
+        className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8"
+        aria-labelledby="profile-images-heading"
+      >
         <PageHeader name={profile.name} />
         <ProfileGallery profile={profile} />
-      </PageLayout>
+      </section>
     );
   } catch {
     return (
-      <PageLayout>
+      <section
+        className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8"
+        aria-labelledby="profile-images-heading"
+      >
         <ProfileError />
-      </PageLayout>
+      </section>
     );
   }
 }
