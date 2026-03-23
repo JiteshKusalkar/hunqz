@@ -1,4 +1,4 @@
-import type { Profile } from '@hunqz/images';
+import type { Profile } from '@hunqz/app-types';
 import { ProfileCard } from '@hunqz/ui';
 
 interface ProfileGalleryProps {

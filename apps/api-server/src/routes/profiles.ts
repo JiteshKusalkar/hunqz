@@ -1,9 +1,10 @@
 import { Router } from 'express';
 import type { Request, Response, NextFunction } from 'express';
 import { getJson } from '@hunqz/api';
-import { mapRawProfile, type RawProfileResponse } from '../utils/profile-images';
+import { mapRawProfile } from '../utils/profile-images';
 import { imageUrl } from './images';
 import { CustomError } from '../utils/custom-error';
+import { RawProfileResponse } from '@hunqz/app-types';
 
 const UPSTREAM_BASE_URL = process.env.HUNQZ_API_BASE_URL;
 

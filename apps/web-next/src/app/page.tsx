@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { getJson } from '@hunqz/api';
-import type { Profile } from '@hunqz/images';
+import type { Profile } from '@hunqz/app-types';
 import { PageHeader } from './components/page-header';
 import { ProfileGallery } from './components/profile-gallery';
 import { ProfileError } from './components/profile-error';

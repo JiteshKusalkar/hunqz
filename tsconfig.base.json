@@ -18,7 +18,9 @@
     "paths": {
       "@hunqz/api": ["libs/api/src/index.ts"],
       "@hunqz/images": ["apps/api-server/src/types/profile.ts"],
-      "@hunqz/ui": ["libs/ui/src/index.ts"]
+      "@hunqz/ui": ["libs/ui/src/index.ts"],
+      "@hunqz/app-types": ["libs/app-types/src/index.ts"],
+      "app-types": ["libs/app-types/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

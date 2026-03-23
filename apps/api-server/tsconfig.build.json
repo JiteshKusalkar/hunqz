@@ -2,7 +2,8 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "paths": {
-      "@hunqz/api": ["dist/libs/api/src/index.d.ts"]
+      "@hunqz/api": ["dist/libs/api/src/index.d.ts"],
+      "@hunqz/app-types": ["dist/libs/app-types/src/index.d.ts"]
     }
   },
   "include": ["src/**/*.ts"],

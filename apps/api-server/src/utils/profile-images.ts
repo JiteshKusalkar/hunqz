@@ -1,31 +1,9 @@
-export type RawProfilePicture = {
-  id?: string;
-  owner_id?: string;
-  url_token?: string;
-};
-
-export type RawProfileResponse = {
-  id?: string;
-  name?: string;
-  online_status?: string;
-  headline?: string;
-  preview_pic?: RawProfilePicture | null;
-  pictures?: RawProfilePicture[];
-};
-
-export type ProfileImageBase = {
-  id: string;
-  urlToken: string;
-};
-
-export type ProfileBase = {
-  id: string;
-  name: string;
-  onlineStatus: string | null;
-  headline: string | null;
-  previewImage: ProfileImageBase | null;
-  images: ProfileImageBase[];
-};
+import type {
+  RawProfilePicture,
+  ProfileBase,
+  ProfileImageBase,
+  RawProfileResponse,
+} from '@hunqz/app-types';
 
 export function mapRawProfile(raw: RawProfileResponse): ProfileBase {
   if (!raw.id) throw new Error('Invalid profile.id');
