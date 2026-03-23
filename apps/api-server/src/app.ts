@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import { profilesRouter } from './routes/profiles';
 import { imagesRouter } from './routes/images';
+import { errorHandler } from './utils/errors';
 
 const allowedOrigins = (process.env.CORS_ORIGINS ?? 'http://localhost:3000,http://localhost:4200')
   .split(',')
@@ -18,3 +19,4 @@ app.get('/health', (_req, res) => {
 
 app.use('/profiles', profilesRouter);
 app.use('/images', imagesRouter);
+app.use(errorHandler);

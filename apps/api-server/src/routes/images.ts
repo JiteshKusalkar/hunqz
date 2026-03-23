@@ -1,5 +1,6 @@
 import { Router } from 'express';
-import { sendError } from './routeErrors';
+import type { Request, Response, NextFunction } from 'express';
+import { CustomError } from '../utils/custom-error';
 
 const cdnBase = process.env.HUNQZ_IMAGE_CDN_BASE_URL;
 
@@ -7,19 +8,31 @@ export const imageUrl = (token: string) => `${process.env.API_PUBLIC_URL}/images
 
 const router = Router();
 
-router.get('/:token', async (req, res) => {
-  try {
-    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
-    const upstreamToken = req.params.token;
-    const upstreamResponse = await fetch(`${cdnBase}/${upstreamToken}.jpg`);
-    if (!upstreamResponse.ok) return sendError(res, 502, 'Failed to load image');
+router.get(
+  '/:token',
+  async (req: Request<{ token: string }>, res: Response, next: NextFunction) => {
+    try {
+      const upstreamToken = req.params.token?.trim();
 
-    const imageBytes = await upstreamResponse.arrayBuffer();
-    res.set('content-type', upstreamResponse.headers.get('content-type') ?? 'image/jpeg');
-    res.send(Buffer.from(imageBytes));
-  } catch {
-    sendError(res, 502, 'Failed to load image');
-  }
-});
+      if (!upstreamToken) {
+        return next(new CustomError(400, 'token is required'));
+      }
+
+      const upstreamResponse = await fetch(`${cdnBase}/${upstreamToken}.jpg`);
+
+      if (upstreamResponse.ok) {
+        return next(new CustomError(502, 'Failed to load image'));
+      }
+
+      const imageBytes = await upstreamResponse.arrayBuffer();
+
+      res.setHeader('Cache-Control', 'public, max-age=2678400');
+      res.set('content-type', upstreamResponse.headers.get('content-type') ?? 'image/jpeg');
+      return res.send(Buffer.from(imageBytes));
+    } catch {
+      return next(new CustomError(502, 'Failed to load image'));
+    }
+  },
+);
 
 export { router as imagesRouter };

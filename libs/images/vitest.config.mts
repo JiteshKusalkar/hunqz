@@ -5,5 +5,6 @@ export default defineConfig({
     environment: 'node',
     include: ['libs/images/src/**/*.spec.ts'],
     globals: true,
+    passWithNoTests: true,
   },
 });

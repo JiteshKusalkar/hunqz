@@ -3,8 +3,7 @@
   "compilerOptions": {
     "paths": {
       "@hunqz/api": ["dist/libs/api/src/index.d.ts"],
-      "@hunqz/images": ["dist/libs/images/src/index.d.ts"],
-      "@hunqz/images/server": ["dist/libs/images/src/server.d.ts"]
+      "@hunqz/images": ["dist/libs/images/src/index.d.ts"]
     }
   },
   "include": ["src/**/*.ts"],

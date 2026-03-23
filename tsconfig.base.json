@@ -18,7 +18,6 @@
     "paths": {
       "@hunqz/api": ["libs/api/src/index.ts"],
       "@hunqz/images": ["libs/images/src/index.ts"],
-      "@hunqz/images/server": ["libs/images/src/server.ts"],
       "@hunqz/ui": ["libs/ui/src/index.ts"]
     }
   },

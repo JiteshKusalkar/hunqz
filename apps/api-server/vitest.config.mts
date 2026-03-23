@@ -5,7 +5,6 @@ export default defineConfig({
   resolve: {
     alias: {
       '@hunqz/api': resolve(__dirname, '../../libs/api/src/index.ts'),
-      '@hunqz/images/server': resolve(__dirname, '../../libs/images/src/server.ts'),
       '@hunqz/images': resolve(__dirname, '../../libs/images/src/index.ts'),
     },
   },
