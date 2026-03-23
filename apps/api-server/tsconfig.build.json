@@ -2,9 +2,9 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "paths": {
-      "@hunqz/shared/api": ["dist/libs/shared/api/src/index.d.ts"],
-      "@hunqz/shared/images": ["dist/libs/shared/images/src/index.d.ts"],
-      "@hunqz/shared/images/server": ["dist/libs/shared/images/src/server.d.ts"]
+      "@hunqz/api": ["dist/libs/api/src/index.d.ts"],
+      "@hunqz/images": ["dist/libs/images/src/index.d.ts"],
+      "@hunqz/images/server": ["dist/libs/images/src/server.d.ts"]
     }
   },
   "include": ["src/**/*.ts"],

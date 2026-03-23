@@ -1,7 +1,7 @@
 {
   "name": "shared-api",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/shared/api/src",
+  "sourceRoot": "libs/api/src",
   "projectType": "library",
   "tags": ["scope:shared", "type:api"],
   "targets": {
@@ -9,9 +9,9 @@
       "executor": "@nx/js:tsc",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/libs/shared/api",
-        "main": "libs/shared/api/src/index.ts",
-        "tsConfig": "libs/shared/api/tsconfig.lib.json",
+        "outputPath": "dist/libs/api",
+        "main": "libs/api/src/index.ts",
+        "tsConfig": "libs/api/tsconfig.lib.json",
         "assets": []
       }
     }

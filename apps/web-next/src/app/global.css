@@ -1,4 +1,4 @@
 @import 'tailwindcss';
 
 /* Include shared UI so Tailwind sees class names in libs */
-@source '../../../../libs/shared/ui/src/**/*.tsx';
+@source '../../../../libs/ui/src/**/*.tsx';

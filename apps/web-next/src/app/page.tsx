@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
-import { getJson } from '@hunqz/shared/api';
-import type { Profile } from '@hunqz/shared/images';
+import { getJson } from '@hunqz/api';
+import type { Profile } from '@hunqz/images';
 import { PageHeader } from './components/page-header';
 import { ProfileGallery } from './components/profile-gallery';
 import { ProfileError } from './components/profile-error';
 
-const API_BASE_URL = process.env.NEXT_API_SERVER_URL;
+const API_BASE_URL = process.env.API_PUBLIC_URL;
 
 export const metadata: Metadata = {
   title: 'Hunqz Profile Images',

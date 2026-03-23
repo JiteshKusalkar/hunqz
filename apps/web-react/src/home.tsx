@@ -1,4 +1,4 @@
-import { useProfile } from './hooks/useProfile';
+import { useProfile } from './hooks/use-profile';
 import { PageHeader } from './components/page-header';
 import { ProfileLoading } from './components/profile-loading';
 import { ProfileError } from './components/profile-error';

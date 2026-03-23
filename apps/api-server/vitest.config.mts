@@ -4,9 +4,9 @@ import { resolve } from 'path';
 export default defineConfig({
   resolve: {
     alias: {
-      '@hunqz/shared/api': resolve(__dirname, '../../libs/shared/api/src/index.ts'),
-      '@hunqz/shared/images/server': resolve(__dirname, '../../libs/shared/images/src/server.ts'),
-      '@hunqz/shared/images': resolve(__dirname, '../../libs/shared/images/src/index.ts'),
+      '@hunqz/api': resolve(__dirname, '../../libs/api/src/index.ts'),
+      '@hunqz/images/server': resolve(__dirname, '../../libs/images/src/server.ts'),
+      '@hunqz/images': resolve(__dirname, '../../libs/images/src/index.ts'),
     },
   },
   test: {

@@ -3,6 +3,8 @@ export async function getJson<T>(path: string, options: { baseUrl?: string } = {
 
   const response = await fetch(url, {
     headers: { accept: 'application/json' },
+    // Avoid stale cached JSON during local development and when image URLs change.
+    cache: 'no-store',
   });
 
   if (!response.ok) {

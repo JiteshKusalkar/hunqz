@@ -16,10 +16,10 @@
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "paths": {
-      "@hunqz/shared/api": ["libs/shared/api/src/index.ts"],
-      "@hunqz/shared/images": ["libs/shared/images/src/index.ts"],
-      "@hunqz/shared/images/server": ["libs/shared/images/src/server.ts"],
-      "@hunqz/shared/ui": ["libs/shared/ui/src/index.ts"]
+      "@hunqz/api": ["libs/api/src/index.ts"],
+      "@hunqz/images": ["libs/images/src/index.ts"],
+      "@hunqz/images/server": ["libs/images/src/server.ts"],
+      "@hunqz/ui": ["libs/ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

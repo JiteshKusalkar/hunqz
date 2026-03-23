@@ -1,7 +1,7 @@
 {
   "name": "shared-images",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/shared/images/src",
+  "sourceRoot": "libs/images/src",
   "projectType": "library",
   "tags": ["scope:shared", "type:images"],
   "targets": {
@@ -9,16 +9,16 @@
       "executor": "@nx/js:tsc",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/libs/shared/images",
-        "main": "libs/shared/images/src/index.ts",
-        "tsConfig": "libs/shared/images/tsconfig.lib.json",
+        "outputPath": "dist/libs/images",
+        "main": "libs/images/src/index.ts",
+        "tsConfig": "libs/images/tsconfig.lib.json",
         "assets": []
       }
     },
     "test": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "pnpm exec vitest run --config libs/shared/images/vitest.config.mts"
+        "command": "pnpm exec vitest run --config libs/images/vitest.config.mts"
       }
     }
   }

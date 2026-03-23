@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { getJson } from '@hunqz/shared/api';
-import type { Profile } from '@hunqz/shared/images';
+import { getJson } from '@hunqz/api';
+import type { Profile } from '@hunqz/images';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const QUERY_KEY = ['profile', 'msescortplus'] as const;

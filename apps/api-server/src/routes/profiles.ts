@@ -1,7 +1,7 @@
 import { Router } from 'express';
-import { getJson } from '@hunqz/shared/api';
-import { mapRawProfile } from '@hunqz/shared/images/server';
-import type { RawProfileResponse } from '@hunqz/shared/images/server';
+import { getJson } from '@hunqz/api';
+import { mapRawProfile } from '@hunqz/images/server';
+import type { RawProfileResponse } from '@hunqz/images/server';
 import { imageUrl } from './images';
 import { sendError } from './routeErrors';
 

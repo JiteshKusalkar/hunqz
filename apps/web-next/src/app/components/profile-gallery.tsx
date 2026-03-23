@@ -1,5 +1,5 @@
-import type { Profile } from '@hunqz/shared/images';
-import { ProfileCard } from '@hunqz/shared/ui';
+import type { Profile } from '@hunqz/images';
+import { ProfileCard } from '@hunqz/ui';
 
 interface ProfileGalleryProps {
   profile: Profile;
