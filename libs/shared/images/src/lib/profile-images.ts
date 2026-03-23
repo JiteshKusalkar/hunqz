@@ -23,9 +23,5 @@ function mapPicture(pic: RawProfilePicture): ProfileImageBase | null {
   return {
     id: pic.id,
     urlToken: pic.url_token,
-    width: pic.width ?? null,
-    height: pic.height ?? null,
-    rating: pic.rating ?? null,
-    isPublic: pic.is_public ?? null,
   };
 }

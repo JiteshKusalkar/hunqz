@@ -1,15 +1,7 @@
 import { setupServer } from 'msw/node';
 import { http, HttpResponse } from 'msw';
 import { afterAll, afterEach, beforeAll } from 'vitest';
-
-const mockProfile = {
-  id: '1',
-  name: 'msescortplus',
-  online_status: 'ONLINE',
-  headline: 'Test',
-  preview_pic: { id: 'pv', url_token: 'preview-tok' },
-  pictures: [{ id: 'p1', url_token: 'tok-1' }],
-};
+import mockProfile from './mocks/profiles.json';
 
 export const msw = setupServer(
   http.get('https://www.hunqz.com/api/opengrid/profiles/:name', ({ params }) =>

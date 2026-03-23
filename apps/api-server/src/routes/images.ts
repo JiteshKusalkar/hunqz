@@ -2,6 +2,8 @@ import { Router } from 'express';
 
 const base = process.env.HUNQZ_IMAGE_CDN_BASE_URL;
 
+export const imageUrl = (token: string) => `${process.env.API_PUBLIC_URL}/images/${token}`;
+
 const router = Router();
 
 router.get('/:token', async (req, res) => {

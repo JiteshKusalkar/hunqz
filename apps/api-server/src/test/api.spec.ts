@@ -13,7 +13,7 @@ describe('api-server', () => {
     const res = await request(app).get('/profiles/msescortplus');
     expect(res.status).toBe(200);
     expect(res.body.name).toBe('msescortplus');
-    expect(res.body.previewImage.imageUrl).toMatch(/\/images\/.+\.jpg$/);
+    expect(res.body.previewImage.imageUrl).toMatch(/\/images\/.+/);
   });
 
   it('GET /images/:token', async () => {

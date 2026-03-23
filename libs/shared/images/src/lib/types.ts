@@ -1,19 +1,11 @@
 export interface ProfileImageBase {
   id: string;
   urlToken: string;
-  width: number | null;
-  height: number | null;
-  rating: string | null;
-  isPublic: boolean | null;
 }
 
 export interface ProfileImage {
   id: string;
   imageUrl: string;
-  width: number | null;
-  height: number | null;
-  rating: string | null;
-  isPublic: boolean | null;
 }
 
 export interface ProfileBase {

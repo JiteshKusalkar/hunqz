@@ -13,7 +13,7 @@ export default defineConfig({
     environment: 'node',
     include: ['apps/api-server/src/**/*.spec.ts'],
     globals: true,
-    setupFiles: ['apps/api-server/src/test/msw-setup.ts'],
+    setupFiles: ['apps/api-server/src/msw/server.ts'],
     env: {
       API_PUBLIC_URL: 'http://localhost:3333',
       HUNQZ_API_BASE_URL: 'https://www.hunqz.com',

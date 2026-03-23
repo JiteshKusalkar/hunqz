@@ -1,0 +1,27 @@
+import type { Profile } from '@hunqz/shared/images';
+import { ProfileCard } from '@hunqz/shared/ui';
+
+interface ProfileGalleryProps {
+  profile: Profile;
+}
+
+export function ProfileGallery({ profile }: ProfileGalleryProps) {
+  const images = profile.images.slice(0, 6);
+
+  return images.length === 0 ? (
+    <p className="mt-8 rounded-md border border-slate-200 bg-slate-50 p-4 text-slate-700">
+      No public images are currently available for this profile.
+    </p>
+  ) : (
+    <ul className="mt-8 grid grid-cols-1 gap-3 xs:grid-cols-2 sm:gap-4 md:grid-cols-2 lg:grid-cols-3">
+      {images.map((image, index) => (
+        <li key={image.id}>
+          <ProfileCard
+            imageSrc={image.imageUrl}
+            imageAlt={`${profile.name}, gallery item ${index + 1}`}
+          />
+        </li>
+      ))}
+    </ul>
+  );
+}

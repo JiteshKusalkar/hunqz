@@ -72,6 +72,7 @@
     "vitest": "~4.0.0"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.95.0",
     "cors": "^2.8.6",
     "express": "^5.2.1",
     "tslib": "^2.3.0"
